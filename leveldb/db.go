@@ -78,7 +78,7 @@ type DB struct {
 
 func openDB(s *session) (*DB, error) {
 	s.log("db@open opening")
-	start := time.Now()
+	//start := time.Now()
 	db := &DB{
 		s: s,
 		// Initial sequence
@@ -108,9 +108,9 @@ func openDB(s *session) (*DB, error) {
 	}
 
 	// Remove any obsolete files.
-	if err := db.cleanFiles(); err != nil {
-		return nil, err
-	}
+	//if err := db.cleanFiles(); err != nil {
+	//	return nil, err
+	//}
 
 	// Don't include compaction error goroutine into wait group.
 	//go db.compactionError()
@@ -120,7 +120,7 @@ func openDB(s *session) (*DB, error) {
 	//go db.writeJournal()
 	//db.wakeCompaction(0)
 
-	s.logf("db@open done T·%v", time.Since(start))
+	//s.logf("db@open done T·%v", time.Since(start))
 
 	runtime.SetFinalizer(db, (*DB).Close)
 	return db, nil
@@ -377,13 +377,13 @@ func (d *DB) recoverJournal() error {
 		}
 		if of != nil {
 			if mem.Len() > 0 {
-				if err := cm.flush(mem, 0); err != nil {
-					return err
-				}
+				//if err := cm.flush(mem, 0); err != nil {
+				//	return err
+				//}
 			}
-			if err := cm.commit(file.Num(), d.seq); err != nil {
-				return err
-			}
+			//if err := cm.commit(file.Num(), d.seq); err != nil {
+			//	return err
+			//}
 			cm.reset()
 			of.Remove()
 			of = nil
@@ -414,9 +414,9 @@ func (d *DB) recoverJournal() error {
 			d.seq = batch.seq + uint64(batch.len())
 			if mem.Size() >= writeBuffer {
 				// Large enough, flush it.
-				if err := cm.flush(mem, 0); err != nil {
-					return err
-				}
+				//if err := cm.flush(mem, 0); err != nil {
+				//	return err
+				//}
 				// Reset memdb.
 				mem.Reset()
 			}
@@ -444,14 +444,14 @@ func (d *DB) recoverJournal() error {
 	if _, err := d.newMem(0); err != nil {
 		return err
 	}
-	// Commit.
-	if err := cm.commit(d.journalFile.Num(), d.seq); err != nil {
-		return err
-	}
-	// Remove the last journal.
-	if of != nil {
-		of.Remove()
-	}
+	//// Commit.
+	//if err := cm.commit(d.journalFile.Num(), d.seq); err != nil {
+	//	return err
+	//}
+	//// Remove the last journal.
+	//if of != nil {
+	//	of.Remove()
+	//}
 	return nil
 }
 
@@ -712,10 +712,10 @@ func (d *DB) Close() error {
 	d.closeWg.Wait()
 
 	// close journal
-	if d.journal != nil {
-		d.journal.Close()
-		d.journalWriter.Close()
-	}
+	//if d.journal != nil {
+	//	d.journal.Close()
+	//	d.journalWriter.Close()
+	//}
 
 	// close session
 	s.close()
