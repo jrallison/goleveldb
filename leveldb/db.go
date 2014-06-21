@@ -16,12 +16,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/syndtr/goleveldb/leveldb/iterator"
-	"github.com/syndtr/goleveldb/leveldb/journal"
-	"github.com/syndtr/goleveldb/leveldb/memdb"
-	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/syndtr/goleveldb/leveldb/storage"
-	"github.com/syndtr/goleveldb/leveldb/util"
+	"github.com/jrallison/goleveldb/leveldb/iterator"
+	"github.com/jrallison/goleveldb/leveldb/journal"
+	"github.com/jrallison/goleveldb/leveldb/memdb"
+	"github.com/jrallison/goleveldb/leveldb/opt"
+	"github.com/jrallison/goleveldb/leveldb/storage"
+	"github.com/jrallison/goleveldb/leveldb/util"
 )
 
 var (
@@ -113,12 +113,12 @@ func openDB(s *session) (*DB, error) {
 	}
 
 	// Don't include compaction error goroutine into wait group.
-	go db.compactionError()
+	//go db.compactionError()
 
-	db.closeWg.Add(2)
-	go db.compaction()
-	go db.writeJournal()
-	db.wakeCompaction(0)
+	//db.closeWg.Add(2)
+	//go db.compaction()
+	//go db.writeJournal()
+	//db.wakeCompaction(0)
 
 	s.logf("db@open done T·%v", time.Since(start))
 

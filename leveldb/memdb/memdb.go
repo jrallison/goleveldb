@@ -11,9 +11,9 @@ import (
 	"math/rand"
 	"sync"
 
-	"github.com/syndtr/goleveldb/leveldb/comparer"
-	"github.com/syndtr/goleveldb/leveldb/iterator"
-	"github.com/syndtr/goleveldb/leveldb/util"
+	"github.com/jrallison/goleveldb/leveldb/comparer"
+	"github.com/jrallison/goleveldb/leveldb/iterator"
+	"github.com/jrallison/goleveldb/leveldb/util"
 )
 
 var (

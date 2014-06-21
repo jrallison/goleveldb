@@ -29,7 +29,7 @@ func newFileLock(path string) (fl fileLock, err error) {
 	if err != nil {
 		return
 	}
-	err = setFileLock(f, true)
+	err = setFileLock(f, false)
 	if err != nil {
 		f.Close()
 		return

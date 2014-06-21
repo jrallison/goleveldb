@@ -7,9 +7,9 @@
 package leveldb
 
 import (
-	"github.com/syndtr/goleveldb/leveldb/cache"
-	"github.com/syndtr/goleveldb/leveldb/filter"
-	"github.com/syndtr/goleveldb/leveldb/opt"
+	"github.com/jrallison/goleveldb/leveldb/cache"
+	"github.com/jrallison/goleveldb/leveldb/filter"
+	"github.com/jrallison/goleveldb/leveldb/opt"
 )
 
 func (s *session) setOptions(o *opt.Options) {
